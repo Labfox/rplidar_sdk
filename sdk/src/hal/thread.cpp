@@ -39,6 +39,8 @@
 #include "arch/win32/winthread.hpp"
 #elif defined(_MACOS)
 #include "arch/macOS/thread.hpp"
+#elif defined(ESP_PLATFORM)
+#include "arch/esp32/thread.hpp"
 #elif defined(__GNUC__)
 #include "arch/linux/thread.hpp"
 #else
