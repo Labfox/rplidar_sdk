@@ -10,47 +10,45 @@
 
 #include "arch/esp32/arch_esp32.h"
 
-namespace rp{ namespace hal{
+namespace rp {
+namespace hal {
 
-Thread Thread::create(thread_proc_t proc, void * data)
-{
-    Thread newborn(proc, data);
+Thread Thread::create(thread_proc_t proc, void* data) {
+  Thread newborn(proc, data);
 
-    assert( sizeof(newborn._handle) >= sizeof(pthread_t));
+  assert(sizeof(newborn._handle) >= sizeof(pthread_t));
 
-    pthread_create((pthread_t *)&newborn._handle, NULL, (void * (*)(void *))proc, data);
+  pthread_create((pthread_t*)&newborn._handle, NULL, (void* (*)(void*))proc,
+                 data);
 
-    return newborn;
+  return newborn;
 }
 
-u_result Thread::terminate()
-{
-    if (!this->_handle) return RESULT_OK;
+u_result Thread::terminate() {
+  if (!this->_handle) return RESULT_OK;
 
-    // pthread_cancel is often not available or supported in embedded systems like ESP-IDF
-    // return pthread_cancel((pthread_t)this->_handle)==0?RESULT_OK:RESULT_OPERATION_FAIL;
-    return RESULT_OPERATION_NOT_SUPPORT;
+  // pthread_cancel is often not available or supported in embedded systems like
+  // ESP-IDF return
+  // pthread_cancel((pthread_t)this->_handle)==0?RESULT_OK:RESULT_OPERATION_FAIL;
+  return RESULT_OPERATION_NOT_SUPPORT;
 }
 
-u_result Thread::SetSelfPriority( priority_val_t p)
-{
-    // ESP-IDF uses FreeRTOS priorities, but we can try to use pthread setschedparam if supported
-    // For now, return OK as a stub or implement if needed.
-    return RESULT_OK;
+u_result Thread::SetSelfPriority(priority_val_t p) {
+  // ESP-IDF uses FreeRTOS priorities, but we can try to use pthread
+  // setschedparam if supported For now, return OK as a stub or implement if
+  // needed.
+  return RESULT_OK;
 }
 
-Thread::priority_val_t Thread::getPriority()
-{
-    return PRIORITY_NORMAL;
+Thread::priority_val_t Thread::getPriority() { return PRIORITY_NORMAL; }
+
+u_result Thread::join(unsigned long timeout) {
+  if (!this->_handle) return RESULT_OK;
+
+  pthread_join((pthread_t)(this->_handle), NULL);
+  this->_handle = 0;
+  return RESULT_OK;
 }
 
-u_result Thread::join(unsigned long timeout)
-{
-    if (!this->_handle) return RESULT_OK;
-
-    pthread_join((pthread_t)(this->_handle), NULL);
-    this->_handle = 0;
-    return RESULT_OK;
-}
-
-}}
+}  // namespace hal
+}  // namespace rp

@@ -11,34 +11,29 @@
 
 #include "hal/event.h"
 
-namespace rp{ namespace hal{
+namespace rp {
+namespace hal {
 
-	template<typename ResultT>
-	class Waiter : public Event
-	{
-	public:
-		Waiter() 
-			: Event()
-		{
-		}
+template <typename ResultT>
+class Waiter : public Event {
+ public:
+  Waiter() : Event() {}
 
-		~Waiter() 
-		{}
+  ~Waiter() {}
 
-		ResultT waitForResult()
-		{
-			wait();
-			return result;
-		}
+  ResultT waitForResult() {
+    wait();
+    return result;
+  }
 
-		void setResult(ResultT result)
-		{
-			this->result = result;
-			set();
-		}
+  void setResult(ResultT result) {
+    this->result = result;
+    set();
+  }
 
-		volatile ResultT result;
-	};
-}}
+  volatile ResultT result;
+};
+}  // namespace hal
+}  // namespace rp
 
 #endif
