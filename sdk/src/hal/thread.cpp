@@ -32,9 +32,8 @@
  *
  */
 
-#include "hal/thread.h"
-
 #include "sdkcommon.h"
+#include "hal/thread.h"
 
 #if defined(_WIN32)
 #include "arch/win32/winthread.hpp"

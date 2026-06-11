@@ -8,19 +8,20 @@
 
 #pragma once
 
+
 #if !defined(_CPU_ENDIAN_BIG) && !defined(_CPU_ENDIAN_SMALL)
 // CPU Endianness is not specified, assume little endian.
 #define _CPU_ENDIAN_SMALL
 #endif
 
 #if defined(_CPU_ENDIAN_BIG) && defined(_CPU_ENDIAN_SMALL)
-#error \
-    "_CPU_ENDIAN_BIG and _CPU_ENDIAN_SMALL cannot be defined at the same time."
+#error "_CPU_ENDIAN_BIG and _CPU_ENDIAN_SMALL cannot be defined at the same time."
 #endif
 
 #include "hal/byteops.h"
 
 #if defined(_CPU_ENDIAN_SMALL)
+
 
 // we don't want to conflict with the Linux kernel...
 #ifndef __KERNEL__
@@ -94,11 +95,13 @@
 #define be16_to_cpu(x) ((_u16)(x))
 #endif
 
+
 #define cpu_to_float_le(x) __byteswap_float(x)
 #define float_le_to_cpu(x) __byteswap_float(x)
 
 #define cpu_to_float_be(x) ((float)x)
 #define float_be_to_cpu(x) ((float)x)
+
 
 #define cpu_to_double_le(x) __byteswap_double(x)
 #define double_le_to_cpu(x) __byteswap_double(x)
