@@ -1,4 +1,4 @@
-idf_component_register(SRCS "src/rplidar_driver.cpp"
+idf_component_register(SRCS "src/sl_rplidar_driver.cpp"
                             "src/sl_async_transceiver.cpp"
                             "src/sl_crc.cpp"
                             "src/sl_lidar_driver.cpp"

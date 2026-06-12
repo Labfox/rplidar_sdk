@@ -16,17 +16,18 @@
   "frameworks": ["espidf", "arduino"],
   "platforms": ["espressif32"],
   "build": {
+    "includeDir": "sdk/include",
+    "srcDir": "sdk/src",
     "flags": [
-      "-I sdk/include",
       "-I sdk/src",
       "-D ESP_PLATFORM"
     ],
     "srcFilter": [
-      "+<sdk/src/>",
-      "-<sdk/src/arch/>",
-      "+<sdk/src/arch/esp32/>",
-      "+<sdk/src/dataunpacker/>",
-      "+<sdk/src/hal/thread.cpp>"
+      "+<*.cpp>",
+      "+<hal/thread.cpp>",
+      "+<dataunpacker/*.cpp>",
+      "+<dataunpacker/unpacker/*.cpp>",
+      "+<arch/esp32/*.cpp>"
     ]
   }
 }
