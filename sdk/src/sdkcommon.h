@@ -37,6 +37,8 @@
 #include "arch/win32/arch_win32.h"
 #elif defined(_MACOS)
 #include "arch/macOS/arch_macOS.h"
+#elif defined(ESP_PLATFORM)
+#include "arch/esp32/arch_esp32.h"
 #elif defined(__GNUC__)
 #include "arch/linux/arch_linux.h"
 #else

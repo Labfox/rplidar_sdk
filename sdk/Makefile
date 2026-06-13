@@ -39,6 +39,7 @@ MODULE_NAME := $(notdir $(CURDIR))
 include $(HOME_TREE)/mak_def.inc
 
 CXXSRC += src/sl_lidar_driver.cpp \
+          src/sl_rplidar_driver.cpp \
           src/hal/thread.cpp\
           src/sl_crc.cpp\
 	      src/sl_serial_channel.cpp\

@@ -225,3 +225,40 @@ Contact Slamtec
 If you have any extra questions, please feel free to contact us at our support email:
 
     support@slamtec.com
+ESP32 Support (ESP-IDF / PlatformIO)
+-----------------------------------
+
+The SDK now supports ESP32 via ESP-IDF and PlatformIO.
+
+### Using with ESP-IDF
+
+To use this SDK as an ESP-IDF component:
+1. Copy the `sdk` directory into your project's `components` directory and rename it to `rplidar_sdk`.
+2. Ensure your `main/CMakeLists.txt` includes the component.
+3. Use `#include "sl_lidar.h"` in your code.
+
+See `app/esp32_demo` for a complete example.
+
+### Using with PlatformIO
+
+Add the following to your `platformio.ini`:
+
+```ini
+[env:esp32dev]
+platform = espressif32
+board = esp32dev
+framework = espidf
+build_flags =
+    -D ESP_PLATFORM
+lib_deps =
+    https://github.com/slamtec/rplidar_sdk
+```
+
+Note: Ensure you define `ESP_PLATFORM` in your build flags.
+
+### ESP32 Demo
+
+A demo application for ESP32 is available in `app/esp32_demo`. It demonstrates:
+- Initializing the LIDAR driver.
+- Connecting via a serial port (UART).
+- Retrieving device information.

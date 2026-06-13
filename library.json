@@ -1,0 +1,33 @@
+{
+  "name": "rplidar_sdk",
+  "version": "2.1.0",
+  "description": "Slamtec RPLIDAR Public SDK for C++",
+  "keywords": "lidar, rplidar, slamtec, esp32, esp-idf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slamtec/rplidar_sdk"
+  },
+  "authors": [
+    {
+      "name": "Slamtec",
+      "email": "support@slamtec.com"
+    }
+  ],
+  "frameworks": ["espidf", "arduino"],
+  "platforms": ["espressif32"],
+  "build": {
+    "includeDir": "sdk/include",
+    "srcDir": "sdk/src",
+    "flags": [
+      "-I sdk/src",
+      "-D ESP_PLATFORM"
+    ],
+    "srcFilter": [
+      "+<*.cpp>",
+      "+<hal/thread.cpp>",
+      "+<dataunpacker/*.cpp>",
+      "+<dataunpacker/unpacker/*.cpp>",
+      "+<arch/esp32/*.cpp>"
+    ]
+  }
+}
